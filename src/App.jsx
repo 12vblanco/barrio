@@ -45,6 +45,10 @@ const Img = styled.img`
   height: auto;
   margin: 0 40px 40px 40px;
   object-fit: cover;
+  border-radius: 8px;
+  @media (max-width: 340px) {
+    width: 100vw;
+  }
 `;
 
 export default App;
