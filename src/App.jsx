@@ -38,10 +38,11 @@ const H1 = styled.h1`
   color: black;
   font-weight: 700;
   font-family: "Roboto, san";
+  margin: 8px;
 `;
 
 const Img = styled.img`
-  width: 30vw;
+  width: 26vw;
   min-width: 340px;
   height: auto;
   margin: 0 40px 40px 40px;
