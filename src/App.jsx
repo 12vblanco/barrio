@@ -5,9 +5,7 @@ import img2 from "./assets/menu2.png";
 function App() {
   return (
     <Container>
-      <Div>
-        <H1>Bar Rio KRBC</H1>
-      </Div>
+      <Div>{/* <H1>Bar Rio KRBC</H1> */}</Div>
       <Div>
         <Img src={img1} alt="menu 1" />
         <Img src={img2} alt="menu 2" />
@@ -33,13 +31,13 @@ const Div = styled.div`
   align-items: center;
   justify-content: center;
 `;
-const H1 = styled.h1`
-  font-size: 64px;
-  color: black;
-  font-weight: 700;
-  font-family: "Roboto, san";
-  margin: 8px;
-`;
+// const H1 = styled.h1`
+//   font-size: 64px;
+//   color: black;
+//   font-weight: 700;
+//   font-family: "Roboto, san";
+//   margin: 8px;
+// `;
 
 const Img = styled.img`
   width: 26vw;
