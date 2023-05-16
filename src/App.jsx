@@ -20,15 +20,18 @@ const Container = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: center;
-  align-items: flex-start;
-  height: 100vh;
+  align-items: center;
+  height: fit-content;
   width: 100vw;
-  overflow: hidden;
   background: #ff48a5;
 `;
 
 const Div = styled.div`
   display: flex;
+  flex-wrap: wrap;
+  width: 100%;
+  align-items: center;
+  justify-content: center;
 `;
 const H1 = styled.h1`
   font-size: 64px;
@@ -38,10 +41,9 @@ const H1 = styled.h1`
 `;
 
 const Img = styled.img`
-  width: 50vw;
-  max-width: 400px;
-  height: 100%;
-  max-height: 400px;
+  width: 30vw;
+  min-width: 340px;
+  height: auto;
   margin: 0 40px 40px 40px;
   object-fit: cover;
 `;
