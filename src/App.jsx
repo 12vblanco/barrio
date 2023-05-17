@@ -49,6 +49,9 @@ const Container = styled.div`
   height: fit-content;
   width: 100vw;
   height: 100vh;
+  @media (max-width: 770px) {
+    height: fit-content;
+  }
 `;
 
 const Div = styled.div`
