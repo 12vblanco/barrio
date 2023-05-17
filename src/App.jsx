@@ -25,7 +25,6 @@ const Container = styled.div`
   height: fit-content;
   width: 100vw;
   background: #fff;
-  background: #ff48a5;
 `;
 
 const Div = styled.div`
@@ -34,7 +33,6 @@ const Div = styled.div`
   width: 100%;
   align-items: center;
   justify-content: center;
-  background: #ff48a5;
 
   @media (max-width: 770px) {
     width: 100%;
