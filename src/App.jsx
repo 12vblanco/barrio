@@ -21,7 +21,7 @@ const Container = styled.div`
   align-items: center;
   height: fit-content;
   width: 100vw;
-  background: #ff48a5;
+  background: #fff;
 `;
 
 const Div = styled.div`
@@ -40,14 +40,17 @@ const Div = styled.div`
 // `;
 
 const Img = styled.img`
-  width: 26vw;
+  width: auto;
   min-width: 340px;
-  height: auto;
+  height: 100vh;
   margin: 0 40px 40px 40px;
   object-fit: cover;
   border-radius: 8px;
-  @media (max-width: 340px) {
-    width: 100vw;
+  @media (max-width: 770px) {
+    width: 100%;
+    height: auto;
+    min-width: 340px;
+    margin-top: 22px;
   }
 `;
 
