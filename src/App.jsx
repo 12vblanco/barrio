@@ -1,11 +1,14 @@
 import { styled } from "styled-components";
+import logo from "./assets/logo.png";
 import img1 from "./assets/menu1.png";
 import img2 from "./assets/menu2.png";
 
 function App() {
   return (
     <Container>
-      <Div>{/* <H1>Bar Rio KRBC</H1> */}</Div>
+      <Div>
+        <Logo src={logo} alt="El logo del rio" />
+      </Div>
       <Div>
         <Img src={img1} alt="menu 1" />
         <Img src={img2} alt="menu 2" />
@@ -22,6 +25,7 @@ const Container = styled.div`
   height: fit-content;
   width: 100vw;
   background: #fff;
+  background: #ff48a5;
 `;
 
 const Div = styled.div`
@@ -30,6 +34,14 @@ const Div = styled.div`
   width: 100%;
   align-items: center;
   justify-content: center;
+  background: #ff48a5;
+
+  @media (max-width: 770px) {
+    width: 100%;
+    height: 100%;
+    min-width: 340px;
+    margin-top: 22px;
+  }
 `;
 // const H1 = styled.h1`
 //   font-size: 64px;
@@ -50,8 +62,11 @@ const Img = styled.img`
     width: 100%;
     height: auto;
     min-width: 340px;
-    margin-top: 22px;
   }
+`;
+const Logo = styled.img`
+  width: auto;
+  height: 100px;
 `;
 
 export default App;
