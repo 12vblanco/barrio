@@ -1,14 +1,11 @@
 import { styled } from "styled-components";
-import logo from "./assets/logo.png";
 import img1 from "./assets/menu1.png";
 import img2 from "./assets/menu2.png";
 
 function App() {
   return (
     <Container>
-      <Div>
-        <Logo src={logo} alt="El logo del rio" />
-      </Div>
+      <Div>{/* <Logo src={logo} alt="El logo del rio" /> */}</Div>
       <Div>
         <Img src={img1} alt="menu 1" />
         <Img src={img2} alt="menu 2" />
@@ -24,7 +21,7 @@ const Container = styled.div`
   align-items: center;
   height: fit-content;
   width: 100vw;
-  background: #fff;
+  background: #7466a3;
 `;
 
 const Div = styled.div`
@@ -33,6 +30,7 @@ const Div = styled.div`
   width: 100%;
   align-items: center;
   justify-content: center;
+  /* padding: 12px; */
 
   @media (max-width: 770px) {
     width: 100%;
@@ -52,8 +50,8 @@ const Div = styled.div`
 const Img = styled.img`
   width: auto;
   min-width: 340px;
-  height: 100vh;
-  margin: 0 40px 40px 40px;
+  height: calc(100vh - 24px);
+  margin: 22px;
   object-fit: cover;
   border-radius: 8px;
   @media (max-width: 770px) {
@@ -61,10 +59,6 @@ const Img = styled.img`
     height: auto;
     min-width: 340px;
   }
-`;
-const Logo = styled.img`
-  width: auto;
-  height: 100px;
 `;
 
 export default App;
