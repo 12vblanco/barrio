@@ -1,18 +1,45 @@
+import { useEffect, useState } from "react";
 import { styled } from "styled-components";
 import img1 from "./assets/menu1.png";
 import img2 from "./assets/menu2.png";
 
-function App() {
+const App = () => {
+  const [backgroundColor, setBackgroundColor] = useState("");
+
+  useEffect(() => {
+    const currentDate = new Date();
+    const dayOfMonth = currentDate.getDate();
+    const colors = [
+      "#FF5733",
+      "#33FF57",
+      "#5733FF",
+      "#FF33B8",
+      "#33B8FF",
+      "#B8FF33",
+      "#FF3333",
+      "#33FF33",
+      "#3333FF",
+      "#FFFF33",
+      "#33FFFF",
+      "#FF33FF",
+      "#66FF33",
+      "#3366FF",
+      "#FF6633",
+    ];
+    const colorIndex = (dayOfMonth - 1) % colors.length;
+    const selectedColor = colors[colorIndex];
+    setBackgroundColor(selectedColor);
+  }, []);
+
   return (
-    <Container>
-      <Div>{/* <Logo src={logo} alt="El logo del rio" /> */}</Div>
+    <Container style={{ background: backgroundColor }}>
       <Div>
         <Img src={img1} alt="menu 1" />
         <Img src={img2} alt="menu 2" />
-      </Div>
+      </Div>{" "}
     </Container>
   );
-}
+};
 
 const Container = styled.div`
   display: flex;
@@ -21,7 +48,7 @@ const Container = styled.div`
   align-items: center;
   height: fit-content;
   width: 100vw;
-  background: #7466a3;
+  height: 100vh;
 `;
 
 const Div = styled.div`
@@ -30,7 +57,6 @@ const Div = styled.div`
   width: 100%;
   align-items: center;
   justify-content: center;
-  /* padding: 12px; */
 
   @media (max-width: 770px) {
     width: 100%;
@@ -39,18 +65,11 @@ const Div = styled.div`
     margin-top: 22px;
   }
 `;
-// const H1 = styled.h1`
-//   font-size: 64px;
-//   color: black;
-//   font-weight: 700;
-//   font-family: "Roboto, san";
-//   margin: 8px;
-// `;
 
 const Img = styled.img`
   width: auto;
   min-width: 340px;
-  height: calc(100vh - 24px);
+  height: 90vh;
   margin: 22px;
   object-fit: cover;
   border-radius: 8px;
