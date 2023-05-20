@@ -6,7 +6,6 @@ import img2 from "./assets/menu2.png";
 
 const App = () => {
   const [backgroundColor, setBackgroundColor] = useState("");
-  const [showSecondImage, setShowSecondImage] = useState(false);
   const secondImageRef = useRef(null);
 
   useEffect(() => {
@@ -35,15 +34,22 @@ const App = () => {
   }, []);
 
   useEffect(() => {
-    const handleTouchMove = () => {
-      if (secondImageRef.current) {
-        const { top, bottom } = secondImageRef.current.getBoundingClientRect();
-        setShowSecondImage(top <= window.innerHeight && bottom >= 0);
+    const handleScroll = () => {
+      if (window.scrollY > 50) {
+        secondImageRef.current.scrollIntoView({ behavior: "smooth" });
+        window.removeEventListener("scroll", handleScroll);
       }
     };
 
-    window.addEventListener("touchmove", handleTouchMove);
-    return () => window.removeEventListener("touchmove", handleTouchMove);
+    if (
+      /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(
+        navigator.userAgent
+      )
+    ) {
+      window.addEventListener("scroll", handleScroll);
+    }
+
+    return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
   return (
@@ -51,15 +57,10 @@ const App = () => {
       <Div>
         <Image>
           <Logo src={logo} alt="El logo del Bar Rio" />
-          <Img src={img1} alt="menu 1" />
+          <Img id="first" src={img1} alt="menu 1" />
         </Image>
         <Image>
-          <Img
-            ref={secondImageRef}
-            src={img2}
-            alt="menu 2"
-            className={showSecondImage ? "show" : ""}
-          />
+          <Img ref={secondImageRef} id="second" src={img2} alt="menu 2" />
         </Image>
       </Div>
     </Container>
@@ -110,9 +111,6 @@ const Img = styled.img`
     min-width: 340px;
     margin: 0;
     padding: 22px;
-  }
-  &.show {
-    height: auto;
   }
 `;
 
