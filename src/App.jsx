@@ -1,11 +1,12 @@
 import { useEffect, useRef, useState } from "react";
-import { styled } from "styled-components";
+import styled from "styled-components";
 import logo from "./assets/logo.png";
 import img1 from "./assets/menu1.png";
 import img2 from "./assets/menu2.png";
 
 const App = () => {
   const [backgroundColor, setBackgroundColor] = useState("");
+  const firstImageRef = useRef(null);
   const secondImageRef = useRef(null);
 
   useEffect(() => {
@@ -32,27 +33,25 @@ const App = () => {
     const selectedColor = colors[colorIndex];
     setBackgroundColor(selectedColor);
   }, []);
-  const firstImageRef = useRef(null);
 
   useEffect(() => {
-    const observer = new IntersectionObserver(
-      ([entry]) => {
-        if (!entry.isIntersecting) {
-          secondImageRef.current.scrollIntoView({ behavior: "smooth" });
-        }
-      },
-      { threshold: 0.1 }
-    );
-
-    if (firstImageRef.current) {
-      observer.observe(firstImageRef.current);
-    }
-
-    return () => {
-      if (firstImageRef.current) {
-        observer.unobserve(firstImageRef.current);
+    const handleScroll = () => {
+      const rect = firstImageRef.current.getBoundingClientRect();
+      if (rect.bottom <= 0) {
+        secondImageRef.current.scrollIntoView({ behavior: "smooth" });
+        window.removeEventListener("scroll", handleScroll);
       }
     };
+
+    if (
+      /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(
+        navigator.userAgent
+      )
+    ) {
+      window.addEventListener("scroll", handleScroll);
+    }
+
+    return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
   return (
@@ -98,6 +97,7 @@ const Image = styled.div`
     align-items: center;
     width: 100%;
     height: 100vh;
+    min-height: 100vh;
   }
 `;
 
