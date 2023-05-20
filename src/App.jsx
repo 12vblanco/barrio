@@ -32,24 +32,27 @@ const App = () => {
     const selectedColor = colors[colorIndex];
     setBackgroundColor(selectedColor);
   }, []);
+  const firstImageRef = useRef(null);
 
   useEffect(() => {
-    const handleScroll = () => {
-      if (window.scrollY > 50) {
-        secondImageRef.current.scrollIntoView({ behavior: "smooth" });
-        window.removeEventListener("scroll", handleScroll);
-      }
-    };
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (!entry.isIntersecting) {
+          secondImageRef.current.scrollIntoView({ behavior: "smooth" });
+        }
+      },
+      { threshold: 0.1 }
+    );
 
-    if (
-      /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(
-        navigator.userAgent
-      )
-    ) {
-      window.addEventListener("scroll", handleScroll);
+    if (firstImageRef.current) {
+      observer.observe(firstImageRef.current);
     }
 
-    return () => window.removeEventListener("scroll", handleScroll);
+    return () => {
+      if (firstImageRef.current) {
+        observer.unobserve(firstImageRef.current);
+      }
+    };
   }, []);
 
   return (
@@ -57,7 +60,7 @@ const App = () => {
       <Div>
         <Image>
           <Logo src={logo} alt="El logo del Bar Rio" />
-          <Img id="first" src={img1} alt="menu 1" />
+          <Img ref={firstImageRef} id="first" src={img1} alt="menu 1" />
         </Image>
         <Image>
           <Img ref={secondImageRef} id="second" src={img2} alt="menu 2" />
