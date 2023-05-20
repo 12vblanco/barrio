@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useState } from "react";
 import styled from "styled-components";
 import logo from "./assets/logo.png";
 import img1 from "./assets/menu1.png";
@@ -6,8 +6,6 @@ import img2 from "./assets/menu2.png";
 
 const App = () => {
   const [backgroundColor, setBackgroundColor] = useState("");
-  const firstImageRef = useRef(null);
-  const secondImageRef = useRef(null);
 
   useEffect(() => {
     const currentDate = new Date();
@@ -34,35 +32,15 @@ const App = () => {
     setBackgroundColor(selectedColor);
   }, []);
 
-  useEffect(() => {
-    const handleScroll = () => {
-      const rect = firstImageRef.current.getBoundingClientRect();
-      if (rect.bottom <= 0) {
-        secondImageRef.current.scrollIntoView({ behavior: "smooth" });
-        window.removeEventListener("scroll", handleScroll);
-      }
-    };
-
-    if (
-      /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(
-        navigator.userAgent
-      )
-    ) {
-      window.addEventListener("scroll", handleScroll);
-    }
-
-    return () => window.removeEventListener("scroll", handleScroll);
-  }, []);
-
   return (
     <Container style={{ background: backgroundColor }}>
       <Div>
         <Image>
           <Logo src={logo} alt="El logo del Bar Rio" />
-          <Img ref={firstImageRef} id="first" src={img1} alt="menu 1" />
+          <Img src={img1} alt="menu 1" />
         </Image>
         <Image>
-          <Img ref={secondImageRef} id="second" src={img2} alt="menu 2" />
+          <Img src={img2} alt="menu 2" />
         </Image>
       </Div>
     </Container>
@@ -86,6 +64,7 @@ const Div = styled.div`
   display: flex;
   flex-wrap: wrap;
   width: 100%;
+  height: fit-content;
   align-items: center;
   justify-content: center;
 `;
@@ -114,6 +93,8 @@ const Img = styled.img`
     min-width: 340px;
     margin: 0;
     padding: 22px;
+  }
+  @media (max-width: 400px) {
   }
 `;
 
