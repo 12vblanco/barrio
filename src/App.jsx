@@ -1,8 +1,8 @@
 import { useEffect, useState } from "react";
 import styled from "styled-components";
 import logo from "./assets/logo.png";
-import img1 from "./assets/menu1.png";
-import img2 from "./assets/menu2.png";
+import img1 from "./assets/menu1.jpeg";
+import img2 from "./assets/menu2.jpeg";
 
 const App = () => {
   const [backgroundColor, setBackgroundColor] = useState("");
